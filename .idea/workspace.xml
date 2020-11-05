@@ -19,9 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="806ac63a-056d-407c-bfac-3cb54533ec07" name="Default Changelist" comment="added weapon system&#10;added enemy class&#10;added player class">
+    <list default="true" id="806ac63a-056d-407c-bfac-3cb54533ec07" name="Default Changelist" comment="added inventory system&#10;added items&#10;started working on script reader&#10;fixed weapon system">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/characters.go" beforeDir="false" afterPath="$PROJECT_DIR$/characters.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script.go" beforeDir="false" afterPath="$PROJECT_DIR$/script.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,9 +97,14 @@
     <MESSAGE value="added game intro&#10;added name picker&#10;used Facade design pattern" />
     <MESSAGE value="little fix&#10;separated code" />
     <MESSAGE value="added weapon system&#10;added enemy class&#10;added player class" />
-    <option name="LAST_COMMIT_MESSAGE" value="added weapon system&#10;added enemy class&#10;added player class" />
+    <MESSAGE value="added inventory system&#10;added items&#10;started working on script reader&#10;fixed weapon system" />
+    <option name="LAST_COMMIT_MESSAGE" value="added inventory system&#10;added items&#10;started working on script reader&#10;fixed weapon system" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="92" y="92" width="1496" height="826" key="DiffContextDialog" timestamp="1604605619503">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="92" y="92" width="1496" height="826" key="DiffContextDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1604605619503" />
     <state x="620" y="259" key="FileChooserDialogImpl" timestamp="1604558939812">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
@@ -129,10 +133,10 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state width="1637" height="272" key="GridCell.Tab.0.right/0.0.1680.1010@0.0.1680.1010" timestamp="1604591501473" />
-    <state x="432" y="237" key="Vcs.Push.Dialog.v2" timestamp="1604595302275">
+    <state x="432" y="237" key="Vcs.Push.Dialog.v2" timestamp="1604605596536">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="432" y="237" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1604595302275" />
+    <state x="432" y="237" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1604605596536" />
     <state x="503" y="217" width="672" height="678" key="search.everywhere.popup" timestamp="1604605204694">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
