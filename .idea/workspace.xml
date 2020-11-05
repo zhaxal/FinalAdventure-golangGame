@@ -19,10 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="806ac63a-056d-407c-bfac-3cb54533ec07" name="Default Changelist" comment="added game intro&#10;added name picker&#10;used Facade design pattern">
-      <change afterPath="$PROJECT_DIR$/gametext.go" afterDir="false" />
+    <list default="true" id="806ac63a-056d-407c-bfac-3cb54533ec07" name="Default Changelist" comment="little fix&#10;separated code">
+      <change afterPath="$PROJECT_DIR$/characters.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/script.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamefacade.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +96,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added game intro&#10;added name picker&#10;used Facade design pattern" />
-    <option name="LAST_COMMIT_MESSAGE" value="added game intro&#10;added name picker&#10;used Facade design pattern" />
+    <MESSAGE value="little fix&#10;separated code" />
+    <option name="LAST_COMMIT_MESSAGE" value="little fix&#10;separated code" />
   </component>
   <component name="WindowStateProjectService">
     <state x="620" y="259" key="FileChooserDialogImpl" timestamp="1604558939812">
@@ -127,9 +128,13 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state width="1637" height="272" key="GridCell.Tab.0.right/0.0.1680.1010@0.0.1680.1010" timestamp="1604591501473" />
-    <state x="432" y="237" key="Vcs.Push.Dialog.v2" timestamp="1604563819556">
+    <state x="432" y="237" key="Vcs.Push.Dialog.v2" timestamp="1604592139594">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="432" y="237" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1604563819556" />
+    <state x="432" y="237" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1604592139594" />
+    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup" timestamp="1604594438537">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup/0.0.1680.1010@0.0.1680.1010" timestamp="1604594438537" />
   </component>
 </project>
