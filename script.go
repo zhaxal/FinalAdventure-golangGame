@@ -2,8 +2,10 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"log"
 	"os"
+	"strconv"
 )
 
 type Script struct {
@@ -44,3 +46,56 @@ func (r *Reader) readFile() {
 		log.Fatal(err)
 	}
 }
+
+func (r *Reader) scriptReader() {
+	r.readFile()
+	r.filePath = "script.txt"
+
+	script := Script{}
+	npc := NPC{}
+
+	for i, s := range r.script {
+		switch substr(s, 0, 3) {
+		case "-st":
+			st(s, script)
+		case "-sc":
+			amount, err := strconv.Atoi(substr(s, 3, 4))
+			sc(r.script, i, amount, script)
+			if err != nil {
+				fmt.Println(err)
+			}
+		case "-nn":
+			nn(s, npc)
+		case "-nt":
+			nt(s, npc)
+		case "-nc":
+			amount, err := strconv.Atoi(substr(s, 3, 4))
+			nc(r.script, i, amount, npc)
+			if err != nil {
+				fmt.Println(err)
+			}
+		}
+	}
+
+}
+
+func substr(input string, start int, length int) string {
+	asRunes := []rune(input)
+
+	if start >= len(asRunes) {
+		return ""
+	}
+
+	if start+length > len(asRunes) {
+		length = len(asRunes) - start
+	}
+
+	return string(asRunes[start : start+length])
+}
+
+/*
+func main() {
+	s := "assignment"
+
+	fmt.Println(substr(s,5,len(s)))
+}*/
