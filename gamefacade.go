@@ -12,13 +12,11 @@ func NewGameFacade() *GameFacade {
 
 func (g *GameFacade) start() {
 	g.intro.showIntro()
-	g.greetings.greet()
-	g.reader.scriptReader()
+	greet()
+	g.reader.scriptReader("script.txt")
 }
 
-/*
 func main() {
 	game := NewGameFacade()
 	game.start()
 }
-*/

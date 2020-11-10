@@ -12,9 +12,7 @@ type NamePicker struct {
 
 func (n *NamePicker) namePick() {
 	fmt.Println("Enter your name")
-	reader := bufio.NewReader(os.Stdin)
-	byteName, _, _ := reader.ReadLine()
-	n.playerName = string(byteName)
+	n.playerName = readline()
 }
 
 func (n *NamePicker) getName() string {
@@ -33,13 +31,44 @@ type Greetings struct {
 
 func (g *Greetings) greet() {
 
-	g.playerName.namePick()
+}
 
-	playerName := g.playerName.getName()
+func readline() string {
+	reader := bufio.NewReader(os.Stdin)
+	byteName, _, _ := reader.ReadLine()
+	return string(byteName)
+}
 
-	if playerName == "" {
-		playerName = "player"
+type Singleton interface {
+	AddOne() int
+}
+
+type singleton struct {
+	count int
+}
+
+var instance *singleton
+
+func greet() Singleton {
+	if instance == nil {
+		instance = new(singleton)
+
+		g := NamePicker{}
+
+		g.namePick()
+
+		playerName := g.getName()
+
+		if playerName == "" {
+			playerName = "player"
+		}
+
+		fmt.Printf("\nAlrighty, %s.\n", playerName)
 	}
+	return instance
+}
 
-	fmt.Printf("\nAlrighty, %s.\n", playerName)
+func (s *singleton) AddOne() int {
+	s.count++
+	return s.count
 }

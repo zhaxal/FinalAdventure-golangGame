@@ -35,11 +35,13 @@ func (r *Reader) readFile() {
 	scanner := bufio.NewScanner(f)
 
 	for scanner.Scan() {
+
 		if r.script[0] == "" {
 			r.script[0] = scanner.Text()
 		} else {
 			r.script = append(r.script, scanner.Text())
 		}
+
 	}
 
 	if err := scanner.Err(); err != nil {
@@ -47,9 +49,10 @@ func (r *Reader) readFile() {
 	}
 }
 
-func (r *Reader) scriptReader() {
+func (r *Reader) scriptReader(filepath string) {
+	r.filePath = filepath
+	r.script = make([]string, 1)
 	r.readFile()
-	r.filePath = "script.txt"
 
 	script := Script{}
 	npc := NPC{}
@@ -92,10 +95,3 @@ func substr(input string, start int, length int) string {
 
 	return string(asRunes[start : start+length])
 }
-
-/*
-func main() {
-	s := "assignment"
-
-	fmt.Println(substr(s,5,len(s)))
-}*/
