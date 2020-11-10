@@ -57,6 +57,11 @@ func (r *Reader) scriptReader(filepath string) {
 	script := Script{}
 	npc := NPC{}
 
+	/*
+		enemy := Enemy{}
+
+	*/
+
 	for i, s := range r.script {
 		switch substr(s, 0, 3) {
 		case "-st":

@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type GameFacade struct {
 	intro     *Intro
 	greetings *Greetings
@@ -11,8 +13,13 @@ func NewGameFacade() *GameFacade {
 }
 
 func (g *GameFacade) start() {
-	g.intro.showIntro()
-	greet()
+	greet := &Intro{new(Greetings)}
+	greet.Request(true)
+
+	_, player := pickRace(g.greetings.picker.playerName)
+
+	fmt.Println(player.hp)
+
 	g.reader.scriptReader("script.txt")
 }
 

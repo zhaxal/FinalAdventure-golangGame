@@ -19,7 +19,11 @@ func sc(text []string, pos int, amount int, script Script) {
 		fmt.Println(script.choice[i])
 	}
 
+	fmt.Println("")
+
 	choice := readline()
+
+	fmt.Println("")
 
 	for i := range script.choice {
 		if script.choice[i] == choice {
@@ -48,9 +52,11 @@ func nc(text []string, pos int, amount int, npc NPC) {
 		npc.script.choice[i] = text[pos+i+1]
 		fmt.Println(npc.script.choice[i])
 	}
+	fmt.Println("")
 
 	choice := readline()
 
+	fmt.Println("")
 	for i := range npc.script.choice {
 		if npc.script.choice[i] == choice {
 			reader := &Reader{}

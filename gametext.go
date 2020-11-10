@@ -19,56 +19,40 @@ func (n *NamePicker) getName() string {
 	return n.playerName
 }
 
-type Intro struct{}
+type Procedure interface {
+	Request(flag bool)
+}
 
-func (i *Intro) showIntro() {
+type Intro struct {
+	next Procedure
+}
+
+func (i *Intro) Request(flag bool) {
 	fmt.Println("-=Final Adventure=-\nAn adventure game made in Go!")
+	if flag {
+		i.next.Request(flag)
+	}
 }
 
 type Greetings struct {
-	playerName NamePicker
+	next   Procedure
+	picker NamePicker
 }
 
-func (g *Greetings) greet() {
+func (g *Greetings) Request(flag bool) {
+	g.picker.namePick()
 
+	playerName := g.picker.getName()
+
+	if playerName == "" {
+		playerName = "player"
+	}
+
+	fmt.Printf("\nAlrighty, %s.\n", playerName)
 }
 
 func readline() string {
 	reader := bufio.NewReader(os.Stdin)
 	byteName, _, _ := reader.ReadLine()
 	return string(byteName)
-}
-
-type Singleton interface {
-	AddOne() int
-}
-
-type singleton struct {
-	count int
-}
-
-var instance *singleton
-
-func greet() Singleton {
-	if instance == nil {
-		instance = new(singleton)
-
-		g := NamePicker{}
-
-		g.namePick()
-
-		playerName := g.getName()
-
-		if playerName == "" {
-			playerName = "player"
-		}
-
-		fmt.Printf("\nAlrighty, %s.\n", playerName)
-	}
-	return instance
-}
-
-func (s *singleton) AddOne() int {
-	s.count++
-	return s.count
 }

@@ -19,7 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="806ac63a-056d-407c-bfac-3cb54533ec07" name="Default Changelist" comment="completed script reader&#10;added to facade">
+    <list default="true" id="806ac63a-056d-407c-bfac-3cb54533ec07" name="Default Changelist" comment="reworked greet method with singleton&#10;choose methode fully functional">
+      <change afterPath="$PROJECT_DIR$/pickRaceSingleton.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamefacade.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamefacade.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gametext.go" beforeDir="false" afterPath="$PROJECT_DIR$/gametext.go" afterDir="false" />
@@ -104,7 +105,8 @@
     <MESSAGE value="added inventory system&#10;added items&#10;started working on script reader&#10;fixed weapon system" />
     <MESSAGE value="added fileReader" />
     <MESSAGE value="completed script reader&#10;added to facade" />
-    <option name="LAST_COMMIT_MESSAGE" value="completed script reader&#10;added to facade" />
+    <MESSAGE value="reworked greet method with singleton&#10;choose methode fully functional" />
+    <option name="LAST_COMMIT_MESSAGE" value="reworked greet method with singleton&#10;choose methode fully functional" />
   </component>
   <component name="WindowStateProjectService">
     <state x="92" y="92" width="1496" height="826" key="DiffContextDialog" timestamp="1604605619503">
@@ -123,26 +125,26 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="678" y="209" key="Github.UntrackedFilesDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1604555876615" />
-    <state width="1637" height="255" key="GridCell.Tab.0.bottom" timestamp="1605042070114">
+    <state width="1637" height="255" key="GridCell.Tab.0.bottom" timestamp="1605047237139">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="255" key="GridCell.Tab.0.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1605042070114" />
-    <state width="1637" height="255" key="GridCell.Tab.0.center" timestamp="1605042070114">
+    <state width="1637" height="255" key="GridCell.Tab.0.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1605047237139" />
+    <state width="1637" height="255" key="GridCell.Tab.0.center" timestamp="1605047237138">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="255" key="GridCell.Tab.0.center/0.0.1680.1010@0.0.1680.1010" timestamp="1605042070114" />
-    <state width="1637" height="255" key="GridCell.Tab.0.left" timestamp="1605042070114">
+    <state width="1637" height="255" key="GridCell.Tab.0.center/0.0.1680.1010@0.0.1680.1010" timestamp="1605047237138" />
+    <state width="1637" height="255" key="GridCell.Tab.0.left" timestamp="1605047237138">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="255" key="GridCell.Tab.0.left/0.0.1680.1010@0.0.1680.1010" timestamp="1605042070114" />
-    <state width="1637" height="255" key="GridCell.Tab.0.right" timestamp="1605042070114">
+    <state width="1637" height="255" key="GridCell.Tab.0.left/0.0.1680.1010@0.0.1680.1010" timestamp="1605047237138" />
+    <state width="1637" height="255" key="GridCell.Tab.0.right" timestamp="1605047237138">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="255" key="GridCell.Tab.0.right/0.0.1680.1010@0.0.1680.1010" timestamp="1605042070114" />
-    <state x="432" y="237" key="Vcs.Push.Dialog.v2" timestamp="1604642846577">
+    <state width="1637" height="255" key="GridCell.Tab.0.right/0.0.1680.1010@0.0.1680.1010" timestamp="1605047237138" />
+    <state x="432" y="237" key="Vcs.Push.Dialog.v2" timestamp="1605042672513">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="432" y="237" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1604642846577" />
+    <state x="432" y="237" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1605042672513" />
     <state x="657" y="418" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604904807119">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
