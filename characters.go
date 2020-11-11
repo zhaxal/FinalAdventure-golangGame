@@ -2,13 +2,16 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
+	"time"
 )
 
 type Player struct {
-	playerName NamePicker
-	hp         int
-	weapon     Weapon
-	inventory  Inventory
+	playerName   NamePicker
+	hp           int
+	attackDamage int
+	weapon       WeaponBehavior
+	inventory    Inventory
 }
 
 type Inventory struct {
@@ -49,19 +52,78 @@ func (i *Inventory) removeItem(item string) {
 	}
 }
 
-type Weapon struct {
-	weaponName   string
-	WeaponDamage int
-	isExists     bool
+func (player *Player) fight(enemy Enemy) {
+	player.weapon.attack(enemy, player.attackDamage)
 }
 
-func (w *Weapon) Attack(enemy Enemy) Enemy {
-	if w.isExists {
-		enemy.hp = enemy.hp - w.WeaponDamage
+type WeaponBehavior interface {
+	attack(enemy Enemy, attackDamage int) *Enemy
+}
+
+func (player *Player) setWeaponBehavior(weaponToSet WeaponBehavior) {
+	player.weapon = weaponToSet
+}
+
+type SwordBehavior struct {
+}
+
+func (sb SwordBehavior) attack(enemy Enemy, attackDamage int) *Enemy {
+	s1 := rand.NewSource(time.Now().UnixNano())
+	r1 := rand.New(s1)
+	chance := r1.Intn(4)
+	if chance == 1 {
+		enemy.hp = enemy.hp - int(float64(attackDamage)*1.5)
 	} else {
-		fmt.Println("You don't have a weapon!")
+		enemy.hp = enemy.hp - attackDamage
 	}
-	return enemy
+	return &enemy
+}
+
+type WandBehavior struct {
+}
+
+func (wb WandBehavior) attack(enemy Enemy, attackDamage int) *Enemy {
+	s1 := rand.NewSource(time.Now().UnixNano())
+	r1 := rand.New(s1)
+	chance := r1.Intn(10)
+	if chance == 1 {
+		enemy.hp = enemy.hp - 2*attackDamage
+	} else {
+		enemy.hp = enemy.hp - attackDamage
+	}
+	return &enemy
+}
+
+type BowBehavior struct {
+}
+
+func (bb BowBehavior) attack(enemy Enemy, attackDamage int) *Enemy {
+	s1 := rand.NewSource(time.Now().UnixNano())
+	r1 := rand.New(s1)
+	chance := r1.Intn(5)
+	if chance == 1 {
+		enemy.hp = enemy.hp - 3*attackDamage
+	} else if chance == 2 {
+
+	} else {
+		enemy.hp = enemy.hp - attackDamage
+	}
+	return &enemy
+}
+
+type AxeBehavior struct {
+}
+
+func (ab AxeBehavior) attack(enemy Enemy, attackDamage int) *Enemy {
+	s1 := rand.NewSource(time.Now().UnixNano())
+	r1 := rand.New(s1)
+	chance := r1.Intn(8)
+	if chance == 1 {
+		enemy.hp = enemy.hp - int(float64(attackDamage)*2.5)
+	} else {
+		enemy.hp = enemy.hp - attackDamage
+	}
+	return &enemy
 }
 
 type Enemy struct {
@@ -70,7 +132,7 @@ type Enemy struct {
 	hp          int
 }
 
-func (e *Enemy) Attack(player Player) Player {
+func (e *Enemy) enemyAttack(player Player) *Player {
 	player.hp = player.hp - e.enemyDamage
-	return player
+	return &player
 }
