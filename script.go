@@ -20,6 +20,7 @@ type NPC struct {
 
 type Reader struct {
 	filePath string
+	player   Player
 	script   []string
 }
 
@@ -56,11 +57,7 @@ func (r *Reader) scriptReader(filepath string) {
 
 	script := Script{}
 	npc := NPC{}
-
-	/*
-		enemy := Enemy{}
-
-	*/
+	enemy := Enemy{}
 
 	for i, s := range r.script {
 		switch substr(s, 0, 3) {
@@ -81,7 +78,11 @@ func (r *Reader) scriptReader(filepath string) {
 			nc(r.script, i, amount, npc)
 			if err != nil {
 				fmt.Println(err)
+
 			}
+		case "-es":
+			es(s, enemy, i, r.player)
+
 		}
 	}
 
