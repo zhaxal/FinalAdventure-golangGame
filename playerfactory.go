@@ -10,9 +10,6 @@ func newElf(name string) *Player {
 		hp:           50,
 		attackDamage: 20,
 		weapon:       &BowBehavior{},
-		inventory: Inventory{
-			slots: 6,
-		},
 	}
 }
 
@@ -26,9 +23,6 @@ func newOrc(name string) *Player {
 		hp:           100,
 		attackDamage: 40,
 		weapon:       &AxeBehavior{},
-		inventory: Inventory{
-			slots: 2,
-		},
 	}
 }
 
@@ -42,9 +36,6 @@ func newHuman(name string) *Player {
 		hp:           70,
 		attackDamage: 30,
 		weapon:       &SwordBehavior{},
-		inventory: Inventory{
-			slots: 4,
-		},
 	}
 }
 
@@ -58,9 +49,6 @@ func newDruid(name string) *Player {
 		hp:           80,
 		attackDamage: 25,
 		weapon:       &WandBehavior{},
-		inventory: Inventory{
-			slots: 3,
-		},
 	}
 }
 
