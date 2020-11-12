@@ -10,7 +10,7 @@ func st(text string, script Script) {
 	fmt.Println(script.text)
 }
 
-func sc(text []string, pos int, amount int, script Script) {
+func sc(text []string, pos int, amount int, script Script, player Player) {
 
 	script.choice = make([]string, amount)
 
@@ -31,6 +31,7 @@ func sc(text []string, pos int, amount int, script Script) {
 	for i := range script.choice {
 		if script.choice[i] == choice {
 			reader := &Reader{}
+			reader.player = player
 			reader.scriptReader(choice + ".txt")
 		}
 	}
@@ -44,7 +45,7 @@ func nt(text string, npc NPC) {
 	npc.script.text = substr(text, 4, len(text))
 }
 
-func nc(text []string, pos int, amount int, npc NPC) {
+func nc(text []string, pos int, amount int, npc NPC, player Player) {
 
 	npc.script.choice = make([]string, amount)
 
@@ -63,6 +64,7 @@ func nc(text []string, pos int, amount int, npc NPC) {
 	for i := range npc.script.choice {
 		if npc.script.choice[i] == choice {
 			reader := &Reader{}
+			reader.player = player
 			reader.scriptReader(choice + ".txt")
 		}
 	}
@@ -77,38 +79,62 @@ func es(text string, enemy Enemy, pos int, player Player) {
 	fmt.Printf("You have monster called: %s\n", enemy.enemyName)
 
 	for 0 < enemy.hp {
+		if player.hp < 0 {
+			fmt.Println("You Lost")
+			return
+		}
 		fmt.Println("Attack him")
 		fight := readline()
 		if fight == "attack" {
-			player.fight(enemy)
+			enemyNew := player.fight(enemy)
+			enemy.hp = enemyNew.hp
+			fmt.Printf("\nEnemy has: %shp\n", enemy.hp)
 		}
 		fmt.Println("Dodge him")
-		dodge := ""
+		ch1 := make(chan string)
+		go goOne(ch1)
 
-		newtimer := time.NewTimer(5 * time.Second)
-		<-newtimer.C
-
-		if dodge != "dodge" {
-			enemy.enemyAttack(player)
+		select {
+		case msg := <-ch1:
+			if msg != "dodge" {
+				playerNew := enemy.enemyAttack(player)
+				player.hp = playerNew.hp
+				fmt.Println("Missed hit")
+				fmt.Printf("\nYou have: %shp\n", player.hp)
+			} else {
+				fmt.Println("dodged")
+			}
+		case <-time.After(time.Second * 6):
+			playerNew := enemy.enemyAttack(player)
+			player.hp = playerNew.hp
+			fmt.Println("Missed hit")
+			fmt.Printf("\nYou have: %shp\n", player.hp)
 		}
 
-		dodge = readline()
-
 	}
+	fmt.Println("You killed the monster")
 }
 
+func goOne(ch chan string) {
+	time.Sleep(time.Second * 5)
+	ch <- readline()
+}
+
+/*
 func main() {
-	var canceled = make(chan struct{})
-	dodge := ""
-	select {
-	case <-time.After(5 * time.Second):
-		// do something for timeout, like change state
-		dodge = readline()
-	case <-canceled:
-		// aborted
-		if dodge != "dodge" {
-			fmt.Println("udar")
-		}
-	}
+	fmt.Println("Dodge him")
+	ch1 := make(chan string)
+	go goOne(ch1)
 
+	select {
+	case msg := <-ch1:
+		if msg != "dodge" {
+			fmt.Println("missed hit")
+		}else {
+			fmt.Println("dodged")
+		}
+	case <-time.After(time.Second * 6):
+		fmt.Println("missed hit")
+	}
 }
+*/

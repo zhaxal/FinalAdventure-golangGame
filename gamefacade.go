@@ -20,9 +20,7 @@ func (g *GameFacade) start() {
 	g.reader.scriptReader("script.txt")
 }
 
-/*
 func main() {
 	game := NewGameFacade()
 	game.start()
 }
-*/

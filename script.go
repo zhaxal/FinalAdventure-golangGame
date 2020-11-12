@@ -65,7 +65,7 @@ func (r *Reader) scriptReader(filepath string) {
 			st(s, script)
 		case "-sc":
 			amount, err := strconv.Atoi(substr(s, 3, 4))
-			sc(r.script, i, amount, script)
+			sc(r.script, i, amount, script, r.player)
 			if err != nil {
 				fmt.Println(err)
 			}
@@ -75,7 +75,7 @@ func (r *Reader) scriptReader(filepath string) {
 			nt(s, npc)
 		case "-nc":
 			amount, err := strconv.Atoi(substr(s, 3, 4))
-			nc(r.script, i, amount, npc)
+			nc(r.script, i, amount, npc, r.player)
 			if err != nil {
 				fmt.Println(err)
 
