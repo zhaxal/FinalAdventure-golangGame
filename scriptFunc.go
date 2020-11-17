@@ -23,7 +23,6 @@ func sc(text []string, pos int, amount int, script Script, player Player) {
 	}
 
 	fmt.Println("")
-
 	choice := readline()
 
 	fmt.Println("")
@@ -83,32 +82,34 @@ func es(text string, enemy Enemy, pos int, player Player) {
 			fmt.Println("You Lost")
 			return
 		}
-		fmt.Println("Attack him")
+		fmt.Println("Attack him (type \"attack\")")
 		fight := readline()
 		if fight == "attack" {
 			enemyNew := player.fight(enemy)
 			enemy.hp = enemyNew.hp
-			fmt.Printf("\nEnemy has: %shp\n", enemy.hp)
+			fmt.Printf("\nEnemy has: %vhp\n", enemy.hp)
 		}
-		fmt.Println("Dodge him")
-		ch1 := make(chan string)
-		go goOne(ch1)
+		if enemy.hp > 0 {
+			fmt.Println("Dodge him (type \"dodge\")")
+			ch1 := make(chan string)
+			go goOne(ch1)
 
-		select {
-		case msg := <-ch1:
-			if msg != "dodge" {
+			select {
+			case msg := <-ch1:
+				if msg != "dodge" {
+					playerNew := enemy.enemyAttack(player)
+					player.hp = playerNew.hp
+					fmt.Println("Missed hit")
+					fmt.Printf("\nYou have: %shp\n", player.hp)
+				} else {
+					fmt.Println("Enemy's attack dodged")
+				}
+			case <-time.After(time.Second * 6):
 				playerNew := enemy.enemyAttack(player)
 				player.hp = playerNew.hp
 				fmt.Println("Missed hit")
-				fmt.Printf("\nYou have: %shp\n", player.hp)
-			} else {
-				fmt.Println("dodged")
+				fmt.Printf("\nYou have: %vhp\n", player.hp)
 			}
-		case <-time.After(time.Second * 6):
-			playerNew := enemy.enemyAttack(player)
-			player.hp = playerNew.hp
-			fmt.Println("Missed hit")
-			fmt.Printf("\nYou have: %shp\n", player.hp)
 		}
 
 	}
