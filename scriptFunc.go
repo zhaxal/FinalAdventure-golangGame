@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"time"
 )
 
@@ -74,6 +75,12 @@ func es(text string, enemy Enemy, pos int, player Player) {
 	enemy.hp = int(text[pos+1])
 	enemy.enemyDamage = int(text[pos+2])
 
+	words := []string{"occurrence", "consensus", "unnecessary", "successful", "definitely", "entrepreneur", "particularly"}
+
+	s1 := rand.NewSource(time.Now().UnixNano())
+	r1 := rand.New(s1)
+	chance := r1.Intn(7)
+
 	fmt.Println("")
 	fmt.Printf("You have monster called: %s\n", enemy.enemyName)
 
@@ -82,25 +89,29 @@ func es(text string, enemy Enemy, pos int, player Player) {
 			fmt.Println("You Lost")
 			return
 		}
-		fmt.Println("Attack him (type \"attack\")")
+		fmt.Printf("Attack him (type \"%v\")\n", words[chance])
 		fight := readline()
-		if fight == "attack" {
+		if fight == words[chance] {
 			enemyNew := player.fight(enemy)
 			enemy.hp = enemyNew.hp
 			fmt.Printf("\nEnemy has: %vhp\n", enemy.hp)
+		} else {
+			fmt.Println("You skipped attack!")
+			fmt.Printf("\nEnemy still has: %vhp\n", enemy.hp)
 		}
+		chance = r1.Intn(7)
 		if enemy.hp > 0 {
-			fmt.Println("Dodge him (type \"dodge\")")
+			fmt.Printf("Dodge him (type \"%v\")\n", words[chance])
 			ch1 := make(chan string)
 			go goOne(ch1)
 
 			select {
 			case msg := <-ch1:
-				if msg != "dodge" {
+				if msg != words[chance] {
 					playerNew := enemy.enemyAttack(player)
 					player.hp = playerNew.hp
-					fmt.Println("Missed hit")
-					fmt.Printf("\nYou have: %shp\n", player.hp)
+					fmt.Printf("\nMissed hit\n")
+					fmt.Printf("\nYou have: %vhp\n", player.hp)
 				} else {
 					fmt.Println("Enemy's attack dodged")
 				}
@@ -110,6 +121,7 @@ func es(text string, enemy Enemy, pos int, player Player) {
 				fmt.Println("Missed hit")
 				fmt.Printf("\nYou have: %vhp\n", player.hp)
 			}
+			chance = r1.Intn(7)
 		}
 
 	}

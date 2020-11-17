@@ -23,10 +23,10 @@ func (sb SwordBehavior) attack(enemy Enemy, attackDamage int) *Enemy {
 	chance := r1.Intn(4)
 	if chance == 1 {
 		enemy.hp = enemy.hp - int(float64(attackDamage)*1.5)
-		fmt.Println("Critical damage!")
+		fmt.Printf("\nCritical damage!\n")
 	} else {
 		enemy.hp = enemy.hp - attackDamage
-		fmt.Println("Successful attack")
+		fmt.Printf("\nSuccessful attack\n")
 	}
 	return &enemy
 }
@@ -40,10 +40,10 @@ func (wb WandBehavior) attack(enemy Enemy, attackDamage int) *Enemy {
 	chance := r1.Intn(10)
 	if chance == 1 {
 		enemy.hp = enemy.hp - 2*attackDamage
-		fmt.Println("Critical damage!")
+		fmt.Printf("\nCritical damage!\n")
 	} else {
 		enemy.hp = enemy.hp - attackDamage
-		fmt.Println("Successful attack")
+		fmt.Printf("\nSuccessful attack\n")
 	}
 	return &enemy
 }
@@ -57,12 +57,12 @@ func (bb BowBehavior) attack(enemy Enemy, attackDamage int) *Enemy {
 	chance := r1.Intn(5)
 	if chance == 1 {
 		enemy.hp = enemy.hp - 3*attackDamage
-		fmt.Println("Critical damage!")
+		fmt.Printf("\nCritical damage!\n")
 	} else if chance == 2 {
-		fmt.Println("You missed!")
+		fmt.Printf("\nYou missed!\n")
 	} else {
 		enemy.hp = enemy.hp - attackDamage
-		fmt.Println("Successful attack")
+		fmt.Printf("\nSuccessful attack\n")
 	}
 	return &enemy
 }
@@ -76,10 +76,10 @@ func (ab AxeBehavior) attack(enemy Enemy, attackDamage int) *Enemy {
 	chance := r1.Intn(8)
 	if chance == 1 {
 		enemy.hp = enemy.hp - int(float64(attackDamage)*2.5)
-		fmt.Println("Critical damage!")
+		fmt.Printf("\nCritical damage!\n")
 	} else {
 		enemy.hp = enemy.hp - attackDamage
-		fmt.Println("Successful attack")
+		fmt.Printf("\nSuccessful attack\n")
 	}
 	return &enemy
 }
